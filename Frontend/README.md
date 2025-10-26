@@ -49,8 +49,7 @@ The frontend is a single-page React application that provides an intuitive inter
 ┌────────────────────▼────────────────────────────────────┐
 │  Business Logic Layer (Custom Hooks)                    │
 │  ├── useCruxData: Data fetching & caching               │
-│  ├── useTableFilters: Filtering & sorting               │
-│  └── useDebounce: Performance optimization              │
+│  └── useTableFilters: Filtering & sorting               │
 └────────────────────┬────────────────────────────────────┘
                      │
 ┌────────────────────▼────────────────────────────────────┐
@@ -143,7 +142,7 @@ frontend/src/
 ├── utils/                         # Utility functions
 
 │
-├── .env                           # Environment config
+├── .env.example                   # Example Environment config
 │
 ├── theme/                         # Styling
 │   └── theme.ts                    # MUI theme + glassmorphism

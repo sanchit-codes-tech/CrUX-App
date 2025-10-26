@@ -69,15 +69,14 @@ The **Chrome UX Report Dashboard** is an enterprise-ready solution for monitorin
 │           Frontend (React + TypeScript)             │
 │  - Single-page application with Material-UI         │
 │  - Client-side routing and state management         │
-│  - Smart caching and data visualization             │
 └────────────────────┬────────────────────────────────┘
                      │ REST API (HTTP/HTTPS)
                      ▼
 ┌─────────────────────────────────────────────────────┐
 │          Backend (Node.js + Express)                │
 │  - API gateway and business logic layer             │
-│  - Request validation and rate limiting             │
-│  - Response caching and error handling              │
+│  - Request validation                               │
+│  - Response error handling                          │
 └────────────────────┬────────────────────────────────┘
                      │ HTTPS + API Key
                      ▼
@@ -178,49 +177,121 @@ Frontend will run on `http://localhost:5173`
 ```
 
 ## 📁 Project Structure
-
 ```
 
+<pre>
 crux-dashboard/
-├── frontend/ # React application
-│ ├── public/ # Static assets
-│ ├── src/
-│ │ ├── components/ # Reusable React Components
-│ │ ├── constants/ # Reusable constants
-│ │ ├── container/ # React Functional Components
-│ │ ├── layout/ # React layout
-│ │ ├── hooks/ # Custom React hooks
-│ │ ├── services/ # API services
-│ │ ├── theme/ # React/Material-UI Theme
-│ │ ├── utils/ # Utility functions
-│ │ ├── types/ # TypeScript types
-│ │ └── App.tsx # Root component
-│ │ └── main.tsx # Root main component
-│ ├── .env.example # Environment template
-│ ├── package.json
-│ ├── .gitignore
-│ └── README.md # Frontend documentation
+├── frontend/                          # React application
+│   ├── public/                        # Static assets
+│   │   ├── index.html
+│   │   ├── favicon.ico
+│   │   └── manifest.json
+│   │
+│   ├── src/
+│   │   ├── components/                # Reusable React Components
+│   │   │   ├── UrlChipInput/
+│   │   │   │   ├── UrlChipInput.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── DataTable/
+│   │   │   ├── FilterPanel/
+│   │   │   ├── SummaryStats/
+│   │   │   └── index.ts
+│   │   │
+│   │   ├── constants/                 # Reusable constants
+│   │   │   ├── metrics.ts
+│   │   │   ├── api.ts
+│   │   │   └── index.ts
+│   │   │
+│   │   ├── container/                 # React Functional Components
+│   │   │   ├── Dashboard/
+│   │   │   │   ├── Dashboard.tsx
+│   │   │   │   └── index.ts
+│   │   │   └── index.ts
+│   │   │
+│   │   ├── layout/                    # React layout
+│   │   │   ├── AppBar/
+│   │   │   ├── ErrorBoundary/
+│   │   │   └── index.ts
+│   │   │
+│   │   ├── hooks/                     # Custom React hooks
+│   │   │   ├── useToast.ts
+│   │   │   ├── useCruxData.ts
+│   │   │   └── index.ts
+│   │   │
+│   │   ├── services/                  # API services
+│   │   │   ├── api/
+│   │   │   │   ├── apiClient.ts
+│   │   │   │   └── index.ts
+│   │   │   ├── crux/
+│   │   │   │   ├── crux.service.ts
+│   │   │   │   └── index.ts
+│   │   │   └── index.ts
+│   │   │
+│   │   ├── theme/                     # React/Material-UI Theme
+│   │   │   ├── theme.ts
+│   │   │   └── index.ts
+│   │   │
+│   │   ├── utils/                     # Utility functions
+│   │   │   ├── validation.ts
+│   │   │   ├── export.ts
+│   │   │   └── index.ts
+│   │   │
+│   │   ├── types/                     # TypeScript types
+│   │   │   ├── crux.types.ts
+│   │   │   ├── common.types.ts
+│   │   │   └── index.ts
+│   │   │
+│   │   ├── App.tsx                    # Root component
+│   │   └── main.tsx                   # Root main component
+│   │
+│   ├── .env.example                   # Environment template
+│   ├── .gitignore
+│   ├── package.json
+│   ├── tsconfig.json
+│   ├── vite.config.ts
+│   └── README.md                      # Frontend documentation
 │
-├── backend/ # Node.js API server
-│ ├── src/
-│ │ ├── controllers/ # Request handlers
-│ │ ├── services/ # Business logic
-│ │ ├── constants/ # Resuable Logic
-│ │ ├── middleware/ # Express middleware
-│ │ ├── routes/ # API routes
-│ │ ├── utils/ # Utilities
-│ │ ├── config/ # Configuration
-│ │ └── app.ts # Express app
-│ ├── .env.example # Environment template
-│ ├── package.json
-│ ├── .gitignore
-│ └── README.md # Backend documentation
+├── backend/                           # Node.js API server
+│   ├── src/
+│   │   ├── controller.ts
+│   │   │
+│   │   ├── services/                  # Business logic
+│   │   │   ├── apiClient.ts
+│   │   │   └── endpoints.ts
+│   │   │
+│   │   ├── constants.ts
+│   │   │
+│   │   ├── middleware/                # Express middleware
+│   │   │   ├── globalErrorHandler.ts
+│   │   │   └── validator.ts
+│   │   │
+│   │   ├── routes/                    # API routes
+│   │   │   ├── crux.routes.ts
+│   │   │   └── index.ts
+│   │   │
+│   │   ├── utils/                     # Utilities
+│   │   │   └── validation.ts
+|   |   |
+│   │   ├── services.ts                     # Express app
+│   │   │
+│   │   ├── types/                     # TypeScript types
+│   │   │   ├── crux.types.ts
+│   │   │   └── index.ts
+│   │   │
+│   │   ├── index.ts                     # Express app
+│   │
+│   ├── dist/                          # Compiled output (gitignored)
+│   ├── .env.example                   # Environment template
+│   ├── .gitignore
+│   ├── package.json
+│   ├── tsconfig.json
+│   └── README.md                      # Backend documentation
 │
 ├── .gitignore
-└── README.md # This file
+└── README.md                          # This file
+</pre>
 
 ````
-
 ---
 
 ## 📚 Documentation
@@ -319,4 +390,4 @@ CORS_ORIGIN=http://localhost:3000
 
 ---
 
-**Made with ❤️ for better web performance**
+**Made with ❤️ React.js & Node.js for better web performance**

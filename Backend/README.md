@@ -34,6 +34,7 @@ This backend service provides a REST API for fetching real-world user experience
 - ✅ **Multi-URL Analysis** - Fetch metrics for multiple URLs in one request
 - ✅ **Parallel Processing** - Uses Promise.all for simultaneous API calls
 - ✅ **Data Validation** - Input sanitization and URL format validation
+- ✅ **API Call Optmization** - API will always use the new added URL even if previous URLS are present
 - ✅ **Error Recovery** - Graceful handling of URLs not in CrUX database
 - ✅ **CORS Support** - Configured for cross-origin requests
 - ✅ **Environment Config** - Support for dev/staging/production environments
@@ -73,7 +74,7 @@ backend/
 │   │   ├── validator.ts          # Request validation
 │   ├── utils/
 │   │   ├── validation.ts         # App validation
-├── .env                          # Environment variables (gitignored)
+├── .env.example                  # Environment variables (gitignored)
 ├── index.ts                      # Application entry point
 ├── .gitignore
 ├── package.json
