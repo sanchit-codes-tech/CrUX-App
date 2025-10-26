@@ -24,13 +24,11 @@ The frontend is a single-page React application that provides an intuitive inter
 ### Key Features
 
 ✅ **Smart URL Management** - Single search bar with chip-based URL handling  
-✅ **Intelligent Caching** - Tracks analyzed URLs to prevent duplicate API calls  
+✅ **API Calls Tracking** - Tracks analyzed URLs to prevent duplicate API calls  
 ✅ **Three-Tier Visualization** - Global summary, individual scores, detailed table  
 ✅ **Advanced Filtering** - Filter by metric and threshold  
 ✅ **Dynamic Sorting** - Sort any column ascending/descending  
-✅ **Glassmorphic Design** - Modern frosted glass UI with smooth animations  
-✅ **Responsive Layout** - Works on desktop, tablet, and mobile  
-✅ **Accessibility** - WCAG 2.1 compliant with keyboard navigation
+✅ **Glassmorphic Design** - Modern frosted glass UI with smooth animations
 
 ---
 
