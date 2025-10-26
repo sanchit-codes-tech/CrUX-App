@@ -1,0 +1,10 @@
+#root {
+  width: 100vw;
+  min-width: 320px;
+  padding: 2rem;
+  text-align: center;
+}
+
+.read-the-docs {
+  color: #888;
+}
